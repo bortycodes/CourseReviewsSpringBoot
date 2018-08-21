@@ -1,13 +1,17 @@
 package com.teamgp.review;
 
 import com.teamgp.core.BaseEntity;
+import com.teamgp.course.Course;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Review extends BaseEntity {
   private int rating;
   private String description;
+  @ManyToOne
+  private Course course;
 
   protected Review(){
     super();
@@ -16,6 +20,14 @@ public class Review extends BaseEntity {
   public Review(int rating, String description){
     this.rating = rating;
     this.description = description;
+  }
+
+  public Course getCourse() {
+    return course;
+  }
+
+  public void setCourse(Course course) {
+    this.course = course;
   }
 
   public int getRating() {
