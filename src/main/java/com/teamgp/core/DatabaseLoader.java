@@ -63,7 +63,7 @@ public class DatabaseLoader implements ApplicationRunner {
         new User("albertqerimi", "Albert",  "Qerimi", "password", new String[] {"ROLE_USER"})
     );
     users.saveAll(students);
-    users.save(new User("Bruce", "Wayne", "batman", "dark_knight", new String [] {"ROLE_USER", "ROLE_ADMIN"}));
+    users.save(new User("batman", "Bruce", "Waybe", "dark_knight", new String [] {"ROLE_USER", "ROLE_ADMIN"}));
 
     List<Course> bunchOfCourses = new ArrayList<>();
     IntStream.range(0, 100)
@@ -73,7 +73,7 @@ public class DatabaseLoader implements ApplicationRunner {
           String title = String.format(template, buzzword);
           Course c = new Course(title, "http://test.com");
           Review review = new Review((i % 5) + 1, String.format("Moar %s please!!!", buzzword));
-          review.setReviewer(students.get(i & students.size()));
+          review.setReviewer(students.get(i % students.size()));
           c.addReview(review);
           bunchOfCourses.add(c);
         });
